@@ -1,0 +1,42 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        
+        //Transpose the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        
+        //Reverse each row
+        for (int i = 0; i < n; i++) {
+            reverseRow(matrix[i]);
+        }
+    }
+    
+    private void reverseRow(int[] row) {
+        int left = 0;
+        int right = row.length - 1;
+        
+        while (left < right) {
+            int temp = row[left];
+            row[left] = row[right];
+            row[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+
+[5,  1,  9,  11]        [5,  2,  13, 15]        [15, 13, 2,  5]
+[2,  4,  8,  10]        [1,  4,  3,  14]        [14, 3,  4,  1]
+[13, 3,  6,  7]    =>   [9,  8,  6,  12]    =>  [12, 6,  8,  9] 
+[15, 14, 12, 16]        [11, 10, 7,  16]        [16, 7,  10, 11]
+
+
+
+
+
