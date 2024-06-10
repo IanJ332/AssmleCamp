@@ -1,0 +1,20 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+
+        int[] newDigits = new int[digits.length + 1];
+        newDigits[0] = 1;
+        return newDigits;
+    }
+}
+
+// [1, 2, 3] will go directly into the for and then into the if, the output will be directly into the [1, 2, 4] on return, the
+// If it is [1, 9] will first deal with 9, it will become 0 and then the number in front of +1, into the if, and finally into [2, 0]
+// If it is [9, 9, 9] extreme case, for loop is unable to make any changes to it as well as return, will jump directly to the end, it will become [1, 0, 0, 0].
+
