@@ -1,0 +1,30 @@
+// class Solution {
+//     public int firstUniqChar(String s) {
+//         for(int i = 0; i < s.length(); i++){
+//             int now = String.valueOf(s.charAt(i)); 
+//             String subStr = s.substring(i + 1, s.length());
+//             if(!subStr.contains(now)){
+//                 return i;
+//             }
+//         }
+//         return -1;
+//     }
+// }
+class Solution {
+    public int firstUniqChar(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char now = s.charAt(i);
+            String beforeStr = s.substring(0, i);
+            String afterStr = s.substring(i + 1, s.length());
+            if (!beforeStr.contains(String.valueOf(now)) && !afterStr.contains(String.valueOf(now))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+//first solution is wrong since it did not check the element before i
+// take aabb as an example,
+// in this case first element have same value is i++
+// the second a did not found any more a so it will return i, but there still a `a` before it.
