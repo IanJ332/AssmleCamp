@@ -1,0 +1,38 @@
+class Solution {
+    public int myAtoi(String s) {
+        int now = 0;
+        int n = s.length();
+
+        // Skip leading whitespaces
+        while (now < n && s.charAt(now) == ' ') {
+            now++;
+        }
+
+        // Handle sign
+        int sign = 1;
+        //if is still not last character in the String.
+        //and it detect `-` or `+`
+        //then we will get a sign value, use that later to mutiple with result.
+        if (now < n && (s.charAt(now) == '-' || s.charAt(now) == '+')) {
+            sign = (s.charAt(now) == '-') ? -1 : 1;
+            now++;
+        }
+
+        // Parse digits and build the result
+        long result = 0;
+        while (now < n && Character.isDigit(s.charAt(now))) {
+            int digit = s.charAt(now) - '0';
+
+            // Check for overflow and underflow
+            if (result > (Integer.MAX_VALUE - digit) / 10) {
+                return sign == -1 ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            }
+
+            result = result * 10 + digit;
+            now++;
+        }
+
+        // Apply the sign and return the result
+        return (int) (result * sign);
+    }
+}

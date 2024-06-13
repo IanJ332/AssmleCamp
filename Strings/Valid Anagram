@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        StringBuilder tMutable = new StringBuilder(t);
+        for (int i = 0; i < s.length(); i++) {
+            int index = tMutable.indexOf(String.valueOf(s.charAt(i)));
+            if (index != -1) {
+                tMutable.deleteCharAt(index);
+            } else {
+                return false;
+            }
+        }
+        return tMutable.length() == 0;
+    }
+}
+
+//time and space still not best of the best need learn new tech of Unicode and smth else.
