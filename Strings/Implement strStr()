@@ -1,0 +1,37 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.length() == 0) {
+            return 0;
+        }
+        
+        //i = 0; i <= haystack.length() - needle.length()
+        //i <= haystack.length() - needle.length() ensures that we only check for the presence of the needle where it could fully fit within the haystack.
+        //Explaination: since if haystack is LeebcodeLee;
+                     //and needle is Leetcode, when it detect second L is in the end, the rest length do not have chance to           
+                     //assmble the word Leetcode, which is false(-1)
+        for(int i = 0; i <= haystack.length() - needle.length(); i++){
+            int j;
+            for(j = 0; j < needle.length(); j++){
+                if(haystack.charAt(i + j) != needle.charAt(j)){
+                    break;
+                }
+            }
+            //when code run to here which is means in above for loop is same or we dont have i value, 
+            //to determine that we just need to check if j length is needle length, if it is then we found it.
+            if(j == needle.length()){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+//easy way:
+class Solution2 {
+    public int strStr(String haystack, String needle) {
+        if(haystack.contains(needle)){
+            return haystack.indexOf(needle);
+        }
+    return -1;
+    }
+}
