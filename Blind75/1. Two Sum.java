@@ -1,50 +1,42 @@
+
 import java.util.HashSet;
-import java.util.Arrays;
+
+// Solution_1: Runtime 5 ms | Beats 57.27% Memory 44.65MB Beats 66.23%
+// Solution_2: Runtime 4 ms | Beats 62.58% Memory 44.90MB Beats 34.88%
+
+
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        if(nums == null || nums.length == 0){
-            return null;
-        }
+        // Solution_1: HashSet<Integer> hashNums = new HashSet<>(Arrays.asList(convertToIntegerArray(nums)));
+        // Solution_2:
         Set<Integer> hashNums = new HashSet<>();
-        int[] finalResult = new int[2]; 
-
+        for(int num : nums){
+            hashNums.add(num);
+        }
+        // Rest of the solution:
+        int[] finalResult = new int[2];
         
-        for(int i = 0; i < nums.length; i++){
-            if(hashNums.contains(target - nums[i])){
-
+        for (int i = 0; i < nums.length; i++) {
+            int remain = target - nums[i];
+            if (hashNums.contains(remain)) {
                 finalResult[0] = i;
-                for(int j = 0; j < nums.length; j++){
-                    if(nums[j] == target - nums[i]){
-
+                for (int j = nums.length - 1; j >= 0; j--) {
+                    if (nums[j] == remain && j != i) {
                         finalResult[1] = j;
-                        
+                        return finalResult;
                     }
                 }
-            }else{return null;}   
+            }
         }
-        return finalResult;
-    //     for (int i = 0; i < nums.length; i++) {
-    //         int remain = target - nums[i];
-    //         if (hashNums.contains(remain)) {
-    //             finalResult[0] = i;
-    //             for (int j = nums.length - 1; j >= 0; j--) {
-    //                 if (nums[j] == remain && j != i) {
-    //                     finalResult[1] = j;
-    //                     return finalResult;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return null;
-    // }
+        return null;
+    }
 
-    // private static Integer[] convertToIntegerArray(int[] array) {
-    //     Integer[] result = new Integer[array.length];
-    //     for (int i = 0; i < array.length; i++) {
-    //         result[i] = array[i]; 
-    //     }
-    //     return result;
-    // }
+    private static Integer[] convertToIntegerArray(int[] array) {
+        Integer[] result = new Integer[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i]; 
+        }
+        return result;
     }
 }
