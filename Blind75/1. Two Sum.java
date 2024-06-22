@@ -1,8 +1,11 @@
 
 import java.util.HashSet;
 
-// Solution_1: Runtime 5 ms | Beats 57.27% Memory 44.65MB Beats 66.23%
-// Solution_2: Runtime 4 ms | Beats 62.58% Memory 44.90MB Beats 34.88%
+// Solution_1: Runtime 5 ms | Beats 57.27% |Memory 44.65MB | Beats 66.23%
+// Solution_2: Runtime 4 ms | Beats 62.58% |Memory 44.90MB | Beats 34.88%
+// In general, if  working with primitive types and want to avoid unnecessary boxing and unboxing, 
+// Solution_2 would be the preferred approach. 
+// However, if already have an Integer array or a list, Solution_1 can be a convenient one-liner.
 
 
 
@@ -31,7 +34,7 @@ class Solution {
         }
         return null;
     }
-
+    // Part of Solution_1
     private static Integer[] convertToIntegerArray(int[] array) {
         Integer[] result = new Integer[array.length];
         for (int i = 0; i < array.length; i++) {
