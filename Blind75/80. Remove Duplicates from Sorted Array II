@@ -1,0 +1,28 @@
+import java.util.HashSet;
+import java.util.Set;
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0; 
+
+        Set<Integer> D1 = new HashSet<>();
+        Set<Integer> D2 = new HashSet<>(); 
+        int counter = 0; 
+
+        for (int fast = 0; fast < nums.length; fast++) {
+            int counter = nums[fast];
+            
+            if (!D1.contains(num)) {
+                D1.add(num);
+                nums[counter] = num;
+                counter++;
+            } else if (D1.contains(num) && !D2.contains(num)) {
+                D2.add(num);
+                nums[counter] = num;
+                counter++;
+            }
+        }
+        
+        return counter;
+    }
+}
