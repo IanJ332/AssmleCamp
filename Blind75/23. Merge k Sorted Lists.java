@@ -8,24 +8,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
-        ListNode ans = new ListNode(0);
 
-        for(ListNode node : lists){
-            ListNode temp = list;
-            while(temp != null){
-                //instert the thing but need rebuild(ans).
-                temp = temp.next;
-
-            }
-        }
-        return ans
-    }
-    private void insert(){
-        //two possibl way
-    }
-}
 //so when you insert the number wheather you inster that and do the compare part in `insert` method or in the `for` loop
 //both works but just remember that it wont help to save time and space so just try one of them 
 
@@ -33,3 +16,59 @@ class Solution {
 // [1,2,3] [2,3,4] [6,7,7]
 // 1,2,3
 // then read [2,3,4] [6,7,7] and insert one by one
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode ans = new ListNode(0);
+        ListNode current = ans;
+
+        for (ListNode list : lists) {
+            ListNode temp = list;
+            while (temp != null) {
+                current = insert(current, new ListNode(temp.val));
+                temp = temp.next;
+            }
+        }
+        return ans.next;
+    }
+
+    public ListNode insert(ListNode head, ListNode newNode) {
+        if (head == null || newNode.val <= head.val) {
+            newNode.next = head;
+            return newNode;
+        }
+
+        ListNode current = head;
+        while (current.next != null && current.next.val < newNode.val) {
+            current = current.next;
+        }
+
+        newNode.next = current.next;
+        current.next = newNode;
+
+        return head;
+    }
+}
