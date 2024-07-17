@@ -40,19 +40,27 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode ans = new ListNode(0);
-        ListNode current = ans;
+        ListNode dummy = new ListNode(0);
 
         for (ListNode list : lists) {
-            ListNode temp = list;
-            while (temp != null) {
-                current = insert(current, new ListNode(temp.val));
-                temp = temp.next;
+            while (list != null) {
+                dummy.next = insert(dummy.next, new ListNode(list.val));
+                list = list.next;
             }
         }
-        return ans.next;
+        return dummy.next;
     }
 
     public ListNode insert(ListNode head, ListNode newNode) {
