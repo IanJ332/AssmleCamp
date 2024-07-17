@@ -28,3 +28,8 @@ class Solution {
 }
 //so when you insert the number wheather you inster that and do the compare part in `insert` method or in the `for` loop
 //both works but just remember that it wont help to save time and space so just try one of them 
+
+//update the algor gonna be like:
+// [1,2,3] [2,3,4] [6,7,7]
+// 1,2,3
+// then read [2,3,4] [6,7,7] and insert one by one
